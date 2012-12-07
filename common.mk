@@ -52,8 +52,8 @@ PRODUCT_COPY_FILES += \
 
 # Packages
 PRODUCT_PACKAGES := \
-	audio.a2dp.default \
-	libaudiohw_legacy \
+    audio.a2dp.default \
+    libaudiohw_legacy \
     camera.exynos4 \
     libsurfaceflinger_client \
     com.android.future.usb.accessory \
@@ -63,6 +63,10 @@ PRODUCT_PACKAGES := \
 
 # HAL
 PRODUCT_PACKAGES += \
+    gralloc.exynos4 \
+    libUMP \
+    hwcomposer.exynos4 \
+    libnetcmdiface \
     lights.exynos4 \
     libhwconverter \
     libs5pjpeg \
