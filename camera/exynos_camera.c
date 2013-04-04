@@ -67,7 +67,7 @@ struct exynos_camera_preset exynos_camera_presets_galaxys2[] = {
             .preview_fps_range_values = "(7000,30000)",
             .preview_fps_range = "7000,30000",
 
-            .picture_size_values = "3264x2448,3264x1968,2048x1536,2048x1232,800x480,640x480",
+            .picture_size_values = "3264x2448,3264x1968,2048x1536,2048x1232,1280x960,800x480,640x480",
             .picture_size = "3264x2448",
             .picture_format_values = "jpeg",
             .picture_format = "jpeg",
@@ -587,10 +587,11 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
     if (picture_size_string != NULL) {
         sscanf(picture_size_string, "%dx%d", &picture_width, &picture_height);
 
-        if (picture_width != 0 && picture_height != 0 &&
-            picture_width != exynos_camera->picture_width &&
-            picture_height != exynos_camera->picture_height) {
+        if (picture_width != 0 && picture_width != exynos_camera->picture_width) {
             exynos_camera->picture_width = picture_width;
+        }
+
+        if (picture_height != 0 && picture_height != exynos_camera->picture_height) {
             exynos_camera->picture_height = picture_height;
         }
 
