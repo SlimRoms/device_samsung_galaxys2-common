@@ -242,7 +242,7 @@ int exynos_exif_attributes_create_params(struct exynos_camera *exynos_camera,
     }
 
     // Time
-        time(&time_data);
+    time(&time_data);
     time_info = localtime(&time_data);
     strftime((char *) exif_attributes->date_time, sizeof(exif_attributes->date_time),
         "%Y:%m:%d %H:%M:%S", time_info);
@@ -397,7 +397,7 @@ int exynos_exif_write_data(void *exif_data, unsigned short tag,
         pointer += sizeof(*offset);
 
         memcpy((void *) ((int) start + *offset), data, count * length);
-        *offset += count * length;        
+        *offset += count * length;
     } else {
         memcpy(pointer, data, count * length);
         pointer += 4;
