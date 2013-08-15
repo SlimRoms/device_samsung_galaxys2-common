@@ -1556,7 +1556,7 @@ void exynos_camera_picture_stop(struct exynos_camera *exynos_camera)
     pthread_mutex_unlock(&exynos_camera->picture_mutex);
 
     // Wait for the thread to end
-    for (i=0 ; i < 10 ; i++) {
+    for (i = 0 ; i < 10; i++) {
         if (!exynos_camera->picture_thread_running)
             break;
 
@@ -1688,7 +1688,7 @@ void exynos_camera_auto_focus_stop(struct exynos_camera *exynos_camera)
     pthread_mutex_unlock(&exynos_camera->auto_focus_mutex);
 
     // Wait for the thread to end
-    for (i=0 ; i < 10 ; i++) {
+    for (i = 0 ; i < 10; i++) {
         if (!exynos_camera->auto_focus_thread_running)
             break;
 
@@ -1930,7 +1930,7 @@ int exynos_camera_preview_start(struct exynos_camera *exynos_camera)
         return -1;
     }
 
-    for (i=EXYNOS_CAMERA_MAX_BUFFERS_COUNT ; i >= EXYNOS_CAMERA_MIN_BUFFERS_COUNT ; i--) {
+    for (i = EXYNOS_CAMERA_MAX_BUFFERS_COUNT; i >= EXYNOS_CAMERA_MIN_BUFFERS_COUNT; i--) {
         rc = exynos_v4l2_reqbufs_cap(exynos_camera, 0, i);
         if (rc >= 0)
             break;
@@ -1956,7 +1956,7 @@ int exynos_camera_preview_start(struct exynos_camera *exynos_camera)
     }
 
     frame_size = (int) ((float) width * (float) height * format_bpp);
-    for (i=0 ; i < exynos_camera->preview_buffers_count ; i++) {
+    for (i = 0; i < exynos_camera->preview_buffers_count; i++) {
         rc = exynos_v4l2_querybuf_cap(exynos_camera, 0, i);
         if (rc < 0) {
             ALOGE("%s: querybuf failed!", __func__);
@@ -1989,7 +1989,7 @@ int exynos_camera_preview_start(struct exynos_camera *exynos_camera)
         return -1;
     }
 
-    for (i=0 ; i < exynos_camera->preview_buffers_count ; i++) {
+    for (i = 0; i < exynos_camera->preview_buffers_count; i++) {
         rc = exynos_v4l2_qbuf_cap(exynos_camera, 0, i);
         if (rc < 0) {
             ALOGE("%s: qbuf failed!", __func__);
@@ -2068,7 +2068,7 @@ void exynos_camera_preview_stop(struct exynos_camera *exynos_camera)
     pthread_mutex_lock(&exynos_camera->preview_mutex);
 
     // Wait for the thread to end
-    for (i=0 ; i < 10 ; i++) {
+    for (i = 0; i < 10; i++) {
         if (!exynos_camera->preview_thread_running)
             break;
 
@@ -2158,7 +2158,7 @@ int exynos_camera_recording_start(struct exynos_camera *exynos_camera)
         goto error;
     }
 
-    for (i=EXYNOS_CAMERA_MAX_BUFFERS_COUNT ; i >= EXYNOS_CAMERA_MIN_BUFFERS_COUNT ; i--) {
+    for (i = EXYNOS_CAMERA_MAX_BUFFERS_COUNT; i >= EXYNOS_CAMERA_MIN_BUFFERS_COUNT; i--) {
         rc = exynos_v4l2_reqbufs_cap(exynos_camera, 2, i);
         if (rc >= 0)
             break;
@@ -2172,7 +2172,7 @@ int exynos_camera_recording_start(struct exynos_camera *exynos_camera)
     exynos_camera->recording_buffers_count = rc;
     ALOGD("Found %d recording buffers available!", exynos_camera->recording_buffers_count);
 
-    for (i=0 ; i < exynos_camera->recording_buffers_count ; i++) {
+    for (i = 0 ; i < exynos_camera->recording_buffers_count; i++) {
         rc = exynos_v4l2_querybuf_cap(exynos_camera, 2, i);
         if (rc < 0) {
             ALOGE("%s: querybuf failed!", __func__);
@@ -2196,7 +2196,7 @@ int exynos_camera_recording_start(struct exynos_camera *exynos_camera)
         goto error;
     }
 
-    for (i=0 ; i < exynos_camera->recording_buffers_count ; i++) {
+    for (i = 0; i < exynos_camera->recording_buffers_count; i++) {
         rc = exynos_v4l2_qbuf_cap(exynos_camera, 2, i);
         if (rc < 0) {
             ALOGE("%s: qbuf failed!", __func__);
