@@ -17,7 +17,7 @@ COMMON_PATH := device/samsung/galaxys2-common
 
 DEVICE_PACKAGE_OVERLAYS := $(COMMON_PATH)/overlay
 
-# Init files
+# Rootdir
 PRODUCT_COPY_FILES := \
     $(COMMON_PATH)/rootdir/fstab.smdk4210:root/fstab.smdk4210 \
     $(COMMON_PATH)/rootdir/twrp.fstab:recovery/root/etc/twrp.fstab \
@@ -25,6 +25,10 @@ PRODUCT_COPY_FILES := \
     $(COMMON_PATH)/rootdir/init.smdk4210.usb.rc:root/init.smdk4210.usb.rc \
     $(COMMON_PATH)/rootdir/init.smdk4210.rc:root/init.smdk4210.rc \
     $(COMMON_PATH)/rootdir/ueventd.smdk4210.rc:root/ueventd.smdk4210.rc
+
+# Recovery rootdir
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/rootdir/init.recovery.smdk4210.rc:root/init.recovery.smdk4210.rc
 
 # Audio
 PRODUCT_COPY_FILES += \
