@@ -17,4 +17,7 @@
 <resources>
     <!-- make home button wake configurable in display settings -->
     <bool name="config_show_homeWake">true</bool>
+
+    <!-- Whether or not device settings should be displayed or not for the device -->
+    <bool name="has_advanced_settings">true</bool>
 </resources>
