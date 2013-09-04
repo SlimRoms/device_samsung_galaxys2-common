@@ -105,7 +105,7 @@ struct exynos_camera_preset exynos_camera_presets_galaxys2[] = {
             .whitebalance_values = "auto,incandescent,fluorescent,daylight,cloudy-daylight",
 
             .scene_mode = "auto",
-            .scene_mode_values = "auto,portrait,landscape,night,beach,snow,sunset,fireworks,sports,party,candlelight,dusk-dawn,fall-color,back-light,text",
+            .scene_mode_values = "auto,action,portrait,landscape,night,beach,snow,sunset,fireworks,sports,party,candlelight,dusk-dawn,fall-color,back-light,text",
 
             .effect = "none",
             .effect_values = "none,mono,negative,sepia,aqua",
@@ -845,6 +845,8 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
     if (scene_mode_string != NULL) {
         if (strcmp(scene_mode_string, "auto") == 0)
             scene_mode = SCENE_MODE_NONE;
+        else if (strcmp(scene_mode_string, "action") == 0)
+            scene_mode = SCENE_MODE_SPORTS;
         else if (strcmp(scene_mode_string, "portrait") == 0)
             scene_mode = SCENE_MODE_PORTRAIT;
         else if (strcmp(scene_mode_string, "landscape") == 0)
