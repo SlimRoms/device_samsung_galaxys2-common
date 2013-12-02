@@ -156,14 +156,14 @@
     <bool name="config_disableMenuKeyInLockScreen">true</bool>
 
     <!-- Disable the home key unlock setting -->
-    <bool name="config_disableHomeUnlockSetting">false</bool>
+    <!-- <bool name="config_disableHomeUnlockSetting">false</bool> -->
 
     <!-- Workaround for devices with broken keyboards -->
-    <bool name="config_forceDisableHardwareKeyboard">true</bool>
+    <!-- <bool name="config_forceDisableHardwareKeyboard">true</bool> -->
 
     <!-- Boolean to enable stk functionality on Samsung phones -->
     <bool name="config_samsung_stk">true</bool>
 
     <!-- Boolean to force HW Rotation Lock -->
-    <bool name="config_hasRotationLockSwitch">false</bool>
+    <!-- <bool name="config_hasRotationLockSwitch">false</bool> -->
 </resources>
