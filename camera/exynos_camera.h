@@ -38,248 +38,248 @@
 #define EXYNOS_CAMERA_MAX_BUFFERS_COUNT        8
 
 #define EXYNOS_CAMERA_MSG_ENABLED(msg) \
-    (exynos_camera->messages_enabled & msg)
+	(exynos_camera->messages_enabled & msg)
 #define EXYNOS_CAMERA_CALLBACK_DEFINED(cb) \
-    (exynos_camera->callbacks.cb != NULL)
+	(exynos_camera->callbacks.cb != NULL)
 
 /*
  * Structures
  */
 
 enum m5mo_af_status {
-    M5MO_AF_STATUS_FAIL = 0,
-    M5MO_AF_STATUS_IN_PROGRESS,
-    M5MO_AF_STATUS_SUCCESS,
-    M5MO_AF_STATUS_1ST_SUCCESS = 4,
+	M5MO_AF_STATUS_FAIL = 0,
+	M5MO_AF_STATUS_IN_PROGRESS,
+	M5MO_AF_STATUS_SUCCESS,
+	M5MO_AF_STATUS_1ST_SUCCESS = 4,
 };
 
 struct list_head {
-    struct list_head *next;
-    struct list_head *prev;
+	struct list_head *next;
+	struct list_head *prev;
 };
 
 enum exynos_param_type {
-    EXYNOS_PARAM_INT,
-    EXYNOS_PARAM_FLOAT,
-    EXYNOS_PARAM_STRING,
+	EXYNOS_PARAM_INT,
+	EXYNOS_PARAM_FLOAT,
+	EXYNOS_PARAM_STRING,
 };
 
 union exynos_param_data {
-    int integer;
-    float floating;
-    char *string;
+	int integer;
+	float floating;
+	char *string;
 };
 
 struct exynos_param {
-    struct list_head list;
+	struct list_head list;
 
-    char *key;
-    union exynos_param_data data;
-    enum exynos_param_type type;
+	char *key;
+	union exynos_param_data data;
+	enum exynos_param_type type;
 };
 
 struct exynos_camera_params {
-    char *preview_size_values;
-    char *preview_size;
-    char *preview_format_values;
-    char *preview_format;
-    char *preview_frame_rate_values;
-    int preview_frame_rate;
-    char *preview_fps_range_values;
-    char *preview_fps_range;
+	char *preview_size_values;
+	char *preview_size;
+	char *preview_format_values;
+	char *preview_format;
+	char *preview_frame_rate_values;
+	int preview_frame_rate;
+	char *preview_fps_range_values;
+	char *preview_fps_range;
 
-    char *picture_size_values;
-    char *picture_size;
-    char *picture_format_values;
-    char *picture_format;
-    char *jpeg_thumbnail_size_values;
-    int jpeg_thumbnail_width;
-    int jpeg_thumbnail_height;
-    int jpeg_thumbnail_quality;
-    int jpeg_quality;
+	char *picture_size_values;
+	char *picture_size;
+	char *picture_format_values;
+	char *picture_format;
+	char *jpeg_thumbnail_size_values;
+	int jpeg_thumbnail_width;
+	int jpeg_thumbnail_height;
+	int jpeg_thumbnail_quality;
+	int jpeg_quality;
 
-    char *recording_size;
-    char *recording_size_values;
-    char *recording_format;
+	char *recording_size;
+	char *recording_size_values;
+	char *recording_format;
 
-    char *focus_mode;
-    char *focus_mode_values;
-    char *focus_distances;
-    char *focus_areas;
-    int max_num_focus_areas;
+	char *focus_mode;
+	char *focus_mode_values;
+	char *focus_distances;
+	char *focus_areas;
+	int max_num_focus_areas;
 
-    int zoom_supported;
-    int smooth_zoom_supported;
-    char *zoom_ratios;
-    int zoom;
-    int max_zoom;
+	int zoom_supported;
+	int smooth_zoom_supported;
+	char *zoom_ratios;
+	int zoom;
+	int max_zoom;
 
-    char *flash_mode;
-    char *flash_mode_values;
+	char *flash_mode;
+	char *flash_mode_values;
 
-    int exposure_compensation;
-    float exposure_compensation_step;
-    int min_exposure_compensation;
-    int max_exposure_compensation;
+	int exposure_compensation;
+	float exposure_compensation_step;
+	int min_exposure_compensation;
+	int max_exposure_compensation;
 
-    char *whitebalance;
-    char *whitebalance_values;
+	char *whitebalance;
+	char *whitebalance_values;
 
-    char *scene_mode;
-    char *scene_mode_values;
+	char *scene_mode;
+	char *scene_mode_values;
 
-    char *effect;
-    char *effect_values;
+	char *effect;
+	char *effect_values;
 
-    char *iso;
-    char *iso_values;
+	char *iso;
+	char *iso_values;
 };
 
 struct exynos_camera_preset {
-    char *name;
-    int facing;
-    int orientation;
+	char *name;
+	int facing;
+	int orientation;
 
-    int rotation;
-    int hflip;
-    int vflip;
+	int rotation;
+	int hflip;
+	int vflip;
 
-    int picture_format;
+	int picture_format;
 
-    float focal_length;
-    float horizontal_view_angle;
-    float vertical_view_angle;
+	float focal_length;
+	float horizontal_view_angle;
+	float vertical_view_angle;
 
-    int metering;
+	int metering;
 
-    struct exynos_camera_params params;
+	struct exynos_camera_params params;
 };
 
 struct exynos_v4l2_node {
-    int id;
-    char *node;
+	int id;
+	char *node;
 };
 
 struct exynox_camera_config {
-    struct exynos_camera_preset *presets;
-    int presets_count;
+	struct exynos_camera_preset *presets;
+	int presets_count;
 
-    struct exynos_v4l2_node *v4l2_nodes;
-    int v4l2_nodes_count;
+	struct exynos_v4l2_node *v4l2_nodes;
+	int v4l2_nodes_count;
 };
 
 struct exynos_camera_callbacks {
-    camera_notify_callback notify;
-    camera_data_callback data;
-    camera_data_timestamp_callback data_timestamp;
-    camera_request_memory request_memory;
-    void *user;
+	camera_notify_callback notify;
+	camera_data_callback data;
+	camera_data_timestamp_callback data_timestamp;
+	camera_request_memory request_memory;
+	void *user;
 };
 
 struct exynos_camera {
-    int v4l2_fds[EXYNOS_CAMERA_MAX_V4L2_NODES_COUNT];
+	int v4l2_fds[EXYNOS_CAMERA_MAX_V4L2_NODES_COUNT];
 
-    struct exynox_camera_config *config;
-    struct exynos_param *params;
+	struct exynox_camera_config *config;
+	struct exynos_param *params;
 
-    struct exynos_camera_callbacks callbacks;
-    int messages_enabled;
+	struct exynos_camera_callbacks callbacks;
+	int messages_enabled;
 
-    gralloc_module_t *gralloc;
+	gralloc_module_t *gralloc;
 
-    // Picture
-    pthread_t picture_thread;
-    pthread_mutex_t picture_mutex;
-    int picture_thread_running;
+	// Picture
+	pthread_t picture_thread;
+	pthread_mutex_t picture_mutex;
+	int picture_thread_running;
 
-    int picture_enabled;
-    camera_memory_t *picture_memory;
-    int picture_buffer_length;
+	int picture_enabled;
+	camera_memory_t *picture_memory;
+	int picture_buffer_length;
 
-    // Auto-focus
-    pthread_t auto_focus_thread;
-    pthread_mutex_t auto_focus_mutex;
-    int auto_focus_thread_running;
+	// Auto-focus
+	pthread_t auto_focus_thread;
+	pthread_mutex_t auto_focus_mutex;
+	int auto_focus_thread_running;
 
-    int auto_focus_enabled;
+	int auto_focus_enabled;
 
-    // Preview
-    pthread_t preview_thread;
-    pthread_mutex_t preview_mutex;
-    pthread_mutex_t preview_lock_mutex;
-    int preview_thread_running;
+	// Preview
+	pthread_t preview_thread;
+	pthread_mutex_t preview_mutex;
+	pthread_mutex_t preview_lock_mutex;
+	int preview_thread_running;
 
-    int preview_enabled;
-    struct preview_stream_ops *preview_window;
-    camera_memory_t *preview_memory;
-    int preview_buffers_count;
-    int preview_frame_size;
-    int preview_params_set;
+	int preview_enabled;
+	struct preview_stream_ops *preview_window;
+	camera_memory_t *preview_memory;
+	int preview_buffers_count;
+	int preview_frame_size;
+	int preview_params_set;
 
-    // Recording
-    pthread_mutex_t recording_mutex;
+	// Recording
+	pthread_mutex_t recording_mutex;
 
-    int recording_enabled;
-    camera_memory_t *recording_memory;
-    int recording_buffers_count;
+	int recording_enabled;
+	camera_memory_t *recording_memory;
+	int recording_buffers_count;
 
-    // Camera params
-    int camera_rotation;
-    int camera_hflip;
-    int camera_vflip;
-    int camera_picture_format;
-    int camera_focal_length;
-    int camera_metering;
+	// Camera params
+	int camera_rotation;
+	int camera_hflip;
+	int camera_vflip;
+	int camera_picture_format;
+	int camera_focal_length;
+	int camera_metering;
 
-    int camera_sensor_mode;
+	int camera_sensor_mode;
 
-    // Params
-    int preview_width;
-    int preview_height;
-    int preview_format;
-    float preview_format_bpp;
-    int preview_fps;
-    int picture_width;
-    int picture_height;
-    int picture_format;
-    int jpeg_thumbnail_width;
-    int jpeg_thumbnail_height;
-    int jpeg_thumbnail_quality;
-    int jpeg_quality;
-    int recording_width;
-    int recording_height;
-    int recording_format;
-    int focus_mode;
-    int focus_x;
-    int focus_y;
-    int zoom;
-    int flash_mode;
-    int exposure_compensation;
-    int whitebalance;
-    int scene_mode;
-    int effect;
-    int iso;
-    int metering;
+	// Params
+	int preview_width;
+	int preview_height;
+	int preview_format;
+	float preview_format_bpp;
+	int preview_fps;
+	int picture_width;
+	int picture_height;
+	int picture_format;
+	int jpeg_thumbnail_width;
+	int jpeg_thumbnail_height;
+	int jpeg_thumbnail_quality;
+	int jpeg_quality;
+	int recording_width;
+	int recording_height;
+	int recording_format;
+	int focus_mode;
+	int focus_x;
+	int focus_y;
+	int zoom;
+	int flash_mode;
+	int exposure_compensation;
+	int whitebalance;
+	int scene_mode;
+	int effect;
+	int iso;
+	int metering;
 };
 
 struct exynos_camera_addrs {
-    unsigned int type;
-    unsigned int y;
-    unsigned int cbcr;
-    unsigned int index;
-    unsigned int reserved;
+	unsigned int type;
+	unsigned int y;
+	unsigned int cbcr;
+	unsigned int index;
+	unsigned int reserved;
 };
 
 // This is because the linux header uses anonymous union
 struct exynos_v4l2_ext_control {
-    __u32 id;
-    __u32 size;
-    __u32 reserved2[1];
-    union {
-        __s32 value;
-        __s64 value64;
-        char *string;
-    } data;
+	__u32 id;
+	__u32 size;
+	__u32 reserved2[1];
+	union {
+		__s32 value;
+		__s64 value64;
+		char *string;
+	} data;
 } __attribute__ ((packed));
 
 /*
@@ -304,32 +304,32 @@ void exynos_camera_preview_stop(struct exynos_camera *exynos_camera);
  */
 
 int exynos_exif_attributes_create_static(struct exynos_camera *exynos_camera,
-    exif_attribute_t *exif_attributes);
+	exif_attribute_t *exif_attributes);
 int exynos_exif_attributes_create_params(struct exynos_camera *exynos_camera,
-    exif_attribute_t *exif_attributes);
+	exif_attribute_t *exif_attributes);
 
 int exynos_exif_create(struct exynos_camera *exynos_camera,
-    exif_attribute_t *exif_attributes,
-    camera_memory_t *jpeg_thumbnail_data_memory, int jpeg_thumbnail_size,
-    camera_memory_t **exif_data_memory_p, int *exif_size_p);
+	exif_attribute_t *exif_attributes,
+	camera_memory_t *jpeg_thumbnail_data_memory, int jpeg_thumbnail_size,
+	camera_memory_t **exif_data_memory_p, int *exif_size_p);
 
 /*
  * Param
  */
 
 int exynos_param_int_get(struct exynos_camera *exynos_camera,
-    char *key);
+	char *key);
 float exynos_param_float_get(struct exynos_camera *exynos_camera,
-    char *key);
+	char *key);
 char *exynos_param_string_get(struct exynos_camera *exynos_camera,
-    char *key);
+	char *key);
 
 int exynos_param_int_set(struct exynos_camera *exynos_camera,
-    char *key, int integer);
+	char *key, int integer);
 int exynos_param_float_set(struct exynos_camera *exynos_camera,
-    char *key, float floating);
+	char *key, float floating);
 int exynos_param_string_set(struct exynos_camera *exynos_camera,
-    char *key, char *string);
+	char *key, char *string);
 
 char *exynos_params_string_get(struct exynos_camera *exynos_camera);
 int exynos_params_string_set(struct exynos_camera *exynos_camera, char *string);
@@ -350,84 +350,84 @@ int exynos_v4l2_poll(struct exynos_camera *exynos_camera, int exynos_v4l2_id);
 
 // VIDIOC
 int exynos_v4l2_qbuf(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int type, int memory, int index);
+	int type, int memory, int index);
 int exynos_v4l2_qbuf_cap(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int index);
+	int index);
 int exynos_v4l2_qbuf_out(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int index);
+	int index);
 int exynos_v4l2_dqbuf(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int type, int memory);
+	int type, int memory);
 int exynos_v4l2_dqbuf_cap(struct exynos_camera *exynos_camera, int exynos_v4l2_id);
 int exynos_v4l2_dqbuf_out(struct exynos_camera *exynos_camera, int exynos_v4l2_id);
 int exynos_v4l2_reqbufs(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int type, int memory, int count);
+	int type, int memory, int count);
 int exynos_v4l2_reqbufs_cap(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int count);
+	int count);
 int exynos_v4l2_reqbufs_out(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int count);
+	int count);
 int exynos_v4l2_querybuf(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int type, int memory, int index);
+	int type, int memory, int index);
 int exynos_v4l2_querybuf_cap(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int index);
+	int index);
 int exynos_v4l2_querybuf_out(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int index);
+	int index);
 int exynos_v4l2_querycap(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int flags);
+	int flags);
 int exynos_v4l2_querycap_cap(struct exynos_camera *exynos_camera, int exynos_v4l2_id);
 int exynos_v4l2_querycap_out(struct exynos_camera *exynos_camera, int exynos_v4l2_id);
 int exynos_v4l2_streamon(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int type);
+	int type);
 int exynos_v4l2_streamon_cap(struct exynos_camera *exynos_camera, int exynos_v4l2_id);
 int exynos_v4l2_streamon_out(struct exynos_camera *exynos_camera, int exynos_v4l2_id);
 int exynos_v4l2_streamoff(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int type);
+	int type);
 int exynos_v4l2_streamoff_cap(struct exynos_camera *exynos_camera, int exynos_v4l2_id);
 int exynos_v4l2_streamoff_out(struct exynos_camera *exynos_camera, int exynos_v4l2_id);
 int exynos_v4l2_g_fmt(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int type, int *width, int *height, int *fmt);
+	int type, int *width, int *height, int *fmt);
 int exynos_v4l2_g_fmt_cap(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int *width, int *height, int *fmt);
+	int *width, int *height, int *fmt);
 int exynos_v4l2_g_fmt_out(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int *width, int *height, int *fmt);
+	int *width, int *height, int *fmt);
 int exynos_v4l2_s_fmt_pix(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int type, int width, int height, int fmt, int priv);
+	int type, int width, int height, int fmt, int priv);
 int exynos_v4l2_s_fmt_pix_cap(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int width, int height, int fmt, int priv);
+	int width, int height, int fmt, int priv);
 int exynos_v4l2_s_fmt_pix_out(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int width, int height, int fmt, int priv);
+	int width, int height, int fmt, int priv);
 int exynos_v4l2_s_fmt_win(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int left, int top, int width, int height);
+	int left, int top, int width, int height);
 int exynos_v4l2_enum_fmt(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int type, int fmt);
+	int type, int fmt);
 int exynos_v4l2_enum_fmt_cap(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int fmt);
+	int fmt);
 int exynos_v4l2_enum_fmt_out(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int fmt);
+	int fmt);
 int exynos_v4l2_enum_input(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int id);
+	int id);
 int exynos_v4l2_s_input(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int id);
+	int id);
 int exynos_v4l2_g_ext_ctrls(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    struct v4l2_ext_control *control, int count);
+	struct v4l2_ext_control *control, int count);
 int exynos_v4l2_g_ctrl(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int id, int *value);
+	int id, int *value);
 int exynos_v4l2_s_ctrl(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int id, int value);
+	int id, int value);
 int exynos_v4l2_s_parm(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int type, struct v4l2_streamparm *streamparm);
+	int type, struct v4l2_streamparm *streamparm);
 int exynos_v4l2_s_parm_cap(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    struct v4l2_streamparm *streamparm);
+	struct v4l2_streamparm *streamparm);
 int exynos_v4l2_s_parm_out(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    struct v4l2_streamparm *streamparm);
+	struct v4l2_streamparm *streamparm);
 int exynos_v4l2_s_crop(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int type, int left, int top, int width, int height);
+	int type, int left, int top, int width, int height);
 int exynos_v4l2_s_crop_cap(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int left, int top, int width, int height);
+	int left, int top, int width, int height);
 int exynos_v4l2_s_crop_out(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    int left, int top, int width, int height);
+	int left, int top, int width, int height);
 int exynos_v4l2_g_fbuf(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    void **base, int *width, int *height, int *fmt);
+	void **base, int *width, int *height, int *fmt);
 int exynos_v4l2_s_fbuf(struct exynos_camera *exynos_camera, int exynos_v4l2_id,
-    void *base, int width, int height, int fmt);
+	void *base, int width, int height, int fmt);
 
 #endif
